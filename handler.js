@@ -9,9 +9,9 @@ const documentClient = new DynamoDB.DocumentClient({
 });
 const NOTES_TABLE_NAME = process.env.NOTES_TABLE_NAME;
 
-const send = (statuscode, data) => {
+const send = (statusCode, data) => {
   return {
-    statuscode,
+    statusCode,
     body: JSON.stringify(data),
   };
 };
@@ -75,7 +75,7 @@ module.exports.deleteNote = async (event, context, cb) => {
       ConditionExpression: "attribute_exists(notesId)",
     };
     await documentClient.delete(params).promise();
-    cb(null, send(200, data));
+    cb(null, send(200, notesId));
   } catch (err) {
     cb(null, send(500, err.message));
   }
@@ -88,7 +88,7 @@ module.exports.getAllNotes = async (event, context, cb) => {
       TableName: NOTES_TABLE_NAME,
     };
     const notes = await documentClient.scan(params).promise();
-    cb(null, send(200, data));
+    cb(null, send(200, notes));
   } catch (err) {
     cb(null, send(500, err.message));
   }
