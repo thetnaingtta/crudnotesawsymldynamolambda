@@ -1,7 +1,6 @@
 {
   "name": "notes",
   "version": "1.0.0",
-  "description": "",
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,9 +10,20 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1242.0",
+    "axios": "^1.1.3",
+    "bootstrap": "^5.2.2",
     "git": "^0.1.5"
   },
   "devDependencies": {
     "serverless-iam-roles-per-function": "^3.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thetnaingtta/crudnotesawsymldynamolambda.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thetnaingtta/crudnotesawsymldynamolambda/issues"
+  },
+  "homepage": "https://github.com/thetnaingtta/crudnotesawsymldynamolambda#readme",
+  "description": ""
 }
