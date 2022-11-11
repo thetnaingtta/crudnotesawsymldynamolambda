@@ -1,14 +1,14 @@
-const generatePolicy = (principalId, efect, resource) => {
+const generatePolicy = (principalId, effect, resource) => {
   var authRepsonse = {};
 
   authRepsonse.principalId = principalId;
 
-  if (efect && resource) {
+  if (effect && resource) {
     let policyDocument = {
       Version: "2012-10-17",
       Statement: [
         {
-          Effect: efect,
+          Effect: effect,
           Resource: resource,
           Action: "execute-api:Invoke",
         },
