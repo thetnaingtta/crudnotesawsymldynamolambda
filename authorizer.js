@@ -1,9 +1,9 @@
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
 
 const jwtVerifier = CognitoJwtVerifier.create({
-  userPoolId: "us-east-1_QeTO3K84Q",
+  userPoolId: "us-east-1_MEH2gUr1K",
   tokenUse: "id",
-  clientId: "105k0u0jgddhq6rnjcuath78p3",
+  clientId: "4fecbrka91i1r2c8cjhknh94ca",
 });
 
 const generatePolicy = (principalId, effect, resource) => {
@@ -62,5 +62,5 @@ exports.handler = async (event, context, callback) => {
   // }
 
 
-  // https://mynotesdemomodernsg.auth.us-east-1.amazoncognito.com/login?response_type=token&client_id=105k0u0jgddhq6rnjcuath78p3&redirect_uri=http://localhost:3000
+  
 };

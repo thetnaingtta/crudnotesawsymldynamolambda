@@ -70,7 +70,9 @@ functions:
       - http:
           method: get
           path: notes
-          authorizer: authorizer
+          authorizer:
+            name: userpool_authorizer
+            arn: arn:aws:cognito-idp:us-east-1:707995973664:userpool/us-east-1_MEH2gUr1K
 
 plugins:
   - serverless-iam-roles-per-function
