@@ -3,7 +3,7 @@ frameworkVersion: "2"
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs14.x
   lambdaHashingVersion: 20201221
   stage: dev
   region: us-east-1
@@ -11,6 +11,7 @@ provider:
 functions:
   authorizer:
     handler: authorizer.handler
+
   createNote:
     handler: handler.createNote
     environment:
@@ -26,6 +27,7 @@ functions:
           method: post
           path: notes
           authorizer: authorizer
+
   updateNote:
     handler: handler.updateNote
     environment:
@@ -56,6 +58,7 @@ functions:
           method: delete
           path: notes/{id}
           authorizer: authorizer
+
   getAllNotes:
     handler: handler.getAllNotes
     environment:
@@ -70,22 +73,13 @@ functions:
       - http:
           method: get
           path: notes
-          authorizer: authorizer
+          authorizer:
+            name: userpool_authorizer
+            arn: arn:aws:cognito-idp:us-east-1:707995973664:userpool/us-east-1_v9iBCetT5
 
 plugins:
   - serverless-iam-roles-per-function
 
 # you can add CloudFormation resource templates here
 resources:
-  Resources:
-    notesTable:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: mynote
-        BillingMode: PAY_PER_REQUEST
-        AttributeDefinitions:
-          - AttributeName: notesId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: notesId
-            KeyType: HASH
+  Resources: ${file(resources.yml)}
