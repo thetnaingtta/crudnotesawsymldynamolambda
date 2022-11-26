@@ -79,9 +79,9 @@ functions:
           authorizer:
             name: userpool_authorizer
             type: COGNITO_USER_POOLS
-            arn: !GetAtt cognitoUserPool.Arn
+            # arn: !GetAtt cognitoUserPool.Arn
             # arn: ${ssm:/dev/userPoolArn}
-            # arn: ${ssm:/${self:provider.stage}/userPoolArn}
+            arn: ${ssm:/${self:provider.stage}/userPoolArn}
 
 plugins:
   - serverless-iam-roles-per-function
