@@ -48,7 +48,6 @@ exports.handler = async (event, context, callback) => {
     console.log(JSON.stringify(payload));
     callback(null, generatePolicy("user", "Allow", event.methodArn));
   } catch (err) {
-    console.log(err);
     callback("Error: Invalid Token");
   }
 
