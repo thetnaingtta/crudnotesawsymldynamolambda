@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"All tests passed!\""
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,8 @@
     "git": "^0.1.5"
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
+    "jest": "^29.3.1",
     "serverless-iam-roles-per-function": "^3.2.0"
   },
   "repository": {
