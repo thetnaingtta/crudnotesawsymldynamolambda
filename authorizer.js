@@ -9,6 +9,22 @@ const jwtVerifier = CognitoJwtVerifier.create({
 });
 
 const generatePolicy = (principalId, effect, resource) => {
+  var tmp = resource.split(":");
+  var apiGatewayArnTmp = tmp[5].split("/");
+  // Create wildcard resource
+  var resource =
+    tmp[0] +
+    ":" +
+    tmp[1] +
+    ":" +
+    tmp[2] +
+    ":" +
+    tmp[3] +
+    ":" +
+    tmp[4] +
+    ":" +
+    apiGatewayArnTmp[0] +
+    "/*/*";
   var authRepsonse = {};
 
   authRepsonse.principalId = principalId;
