@@ -1,5 +1,5 @@
 service: notes-api
-frameworkVersion: "2"
+frameworkVersion: "3"
 
 provider:
   name: aws
@@ -70,12 +70,11 @@ functions:
       - http:
           method: get
           path: notes
-          authorizer:
-            name: userpool_authorizer
-            arn: arn:aws:cognito-idp:us-east-1:707995973664:userpool/us-east-1_MEH2gUr1K
+          authorizer: authorizer
 
 plugins:
   - serverless-iam-roles-per-function
+  - serverless-plugin-typescript
 
 # you can add CloudFormation resource templates here
 resources:

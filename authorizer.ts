@@ -1,3 +1,12 @@
+import {
+  APIGatewayEvent,
+  Context,
+  APIGatewayProxyCallback,
+  APIGatewayTokenAuthorizerEvent,
+  PolicyDocument,
+  AuthResponse,
+} from "aws-lambda";
+
 const { CognitoJwtVerifier } = require("aws-jwt-verify");
 
 const jwtVerifier = CognitoJwtVerifier.create({
@@ -6,8 +15,8 @@ const jwtVerifier = CognitoJwtVerifier.create({
   clientId: "4fecbrka91i1r2c8cjhknh94ca",
 });
 
-const generatePolicy = (principalId, effect, resource) => {
-  var authRepsonse = {};
+const generatePolicy = (principalId, effect, resource): AuthResponse => {
+  var authRepsonse = {} as AuthResponse;
 
   authRepsonse.principalId = principalId;
 
@@ -34,7 +43,11 @@ const generatePolicy = (principalId, effect, resource) => {
   return authRepsonse;
 };
 
-exports.handler = async (event, context, callback) => {
+export const handler = async (
+  event: APIGatewayTokenAuthorizerEvent,
+  context: Context,
+  cb: any
+) => {
   // lambda authorizer code
 
   var token = event.authorizationToken;
@@ -44,9 +57,9 @@ exports.handler = async (event, context, callback) => {
   try {
     const payload = await jwtVerifier.verify(token);
     console.log(JSON.stringify(payload));
-    callback(null, generatePolicy("user", "Allow", event.methodArn));
+    cb(null, generatePolicy("user", "Allow", event.methodArn));
   } catch (err) {
-    callback("Error: Invalid Token") 
+    cb("Error: Invalid Token");
   }
 
   // var token = event.authorizationToken; // "allow or deny"
@@ -60,7 +73,4 @@ exports.handler = async (event, context, callback) => {
   //       default:
   //           callback("Error: Invalid Token")
   // }
-
-
-  
 };
