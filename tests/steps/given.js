@@ -6,8 +6,8 @@ const cognito = new AWS.CognitoIdentityServiceProvider();
 exports.an_authenticated_user = async () => {
   const userPoolId = process.env.USER_POOL_ID;
   const clientId = process.env.CLIENT_ID;
-  const username = process.env.USERNAME;
-  const password = process.env.PASSWORD;
+  const username = process.env.USER_NAME;
+  const password = process.env.PASS_WORD;
 
   const params = {
     UserPoolId: userPoolId,

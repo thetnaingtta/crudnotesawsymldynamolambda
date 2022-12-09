@@ -46,7 +46,13 @@ exports.we_invoke_updateNote = (options) => {
 };
 
 exports.we_invoke_deleteNote = (options) => {
-    // Make an HTTP call
-    let response = makeHttpRequest("notes", "DELETE", options);
-    return response;
-  };
+  // Make an HTTP call
+  let response = makeHttpRequest("notes", "DELETE", options);
+  return response;
+};
+
+exports.we_invoke_getNote = (options) => {
+  // Make an HTTP call
+  let response = makeHttpRequest("notes", "GET", options);
+  return response;
+};
